@@ -1,7 +1,7 @@
 package com.example.university.entity.enums;
 
-public enum StudyTypeUz {
+public enum StudyTypeRu {
     Kunduzgi,
     Kechgi,
-    Sirtqi
+    Внешне
 }

@@ -1,8 +1,8 @@
-package com.example.cafeservice.config;
+package com.example.university.config;
 
-import com.example.cafeservice.security.JwtAuthEntryPoint;
-import com.example.cafeservice.security.JwtConfigurer;
-import com.example.cafeservice.security.JwtTokenProvider;
+import com.example.university.security.JwtAuthEntryPoint;
+import com.example.university.security.JwtConfigurer;
+import com.example.university.security.JwtTokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -28,11 +28,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return super.authenticationManager();
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//                .userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-//    }
 
     @Override
     public void configure(HttpSecurity http) throws Exception{

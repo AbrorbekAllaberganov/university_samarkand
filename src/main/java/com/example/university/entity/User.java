@@ -1,4 +1,4 @@
-package com.example.cafeservice.entity;
+package com.example.university.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class User extend Parent {
+public class User {
 
     @Id
     @Type(type = "org.hibernate.type.PostgresUUIDType")
@@ -26,6 +26,4 @@ public class User extend Parent {
 
     @OneToOne
     private Parent parent;
-
-    private String chek;
 }

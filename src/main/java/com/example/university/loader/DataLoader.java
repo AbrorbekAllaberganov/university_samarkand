@@ -1,11 +1,11 @@
-package com.example.cafeservice.loader;
+package com.example.university.loader;
 
-import com.example.cafeservice.entity.Admin;
-import com.example.cafeservice.entity.Parent;
-import com.example.cafeservice.entity.Role;
-import com.example.cafeservice.repository.AdminRepository;
-import com.example.cafeservice.repository.ParentRepository;
-import com.example.cafeservice.repository.RoleRepository;
+import com.example.university.entity.Admin;
+import com.example.university.entity.Parent;
+import com.example.university.entity.Role;
+import com.example.university.repository.AdminRepository;
+import com.example.university.repository.ParentRepository;
+import com.example.university.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -19,34 +19,33 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class DataLoader implements CommandLineRunner {
-        @Value("${spring.jpa.hibernate.ddl-auto}")
-        private String init;
+    @Value("${spring.jpa.hibernate.ddl-auto}")
+    private String init;
 
-        private final RoleRepository roleRepository;
-        private final AdminRepository adminRepository;
-        private final PasswordEncoder passwordEncoder;
-        private final ParentRepository parentRepository;
+    private final RoleRepository roleRepository;
+    private final AdminRepository adminRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final ParentRepository parentRepository;
 
     @Override
     public void run(String... args) throws Exception {
 
 
         try {
-            if (init.equalsIgnoreCase("create"))
-            {
-                Role roleUser=new Role();
+            if (init.equalsIgnoreCase("create")) {
+                Role roleUser = new Role();
                 roleUser.setId(1L);
                 roleUser.setName("ROLE_USER");
 
-                Role roleAdmin=new Role();
+                Role roleAdmin = new Role();
                 roleAdmin.setId(2L);
                 roleAdmin.setName("ROLE_ADMIN");
 
-                List<Role> roleList=new ArrayList<>(Arrays.asList(roleUser,roleAdmin));
-                roleList=roleRepository.saveAll(roleList);
+                List<Role> roleList = new ArrayList<>(Arrays.asList(roleUser, roleAdmin));
+                roleList = roleRepository.saveAll(roleList);
 
-                Admin admin=new Admin();
-                Parent parent=new Parent();
+                Admin admin = new Admin();
+                Parent parent = new Parent();
                 parent.setRoles(new ArrayList<>(Arrays.asList(roleRepository.findByName("ROLE_ADMIN"))));
                 parent.setUserName("admin");
                 parent.setPassword(passwordEncoder.encode("111"));
@@ -59,9 +58,8 @@ public class DataLoader implements CommandLineRunner {
             }
 
 
-        }catch (Exception e)
-        {
-            System.out.println(e);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

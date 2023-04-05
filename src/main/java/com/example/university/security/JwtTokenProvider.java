@@ -1,7 +1,7 @@
-package com.example.cafeservice.security;
+package com.example.university.security;
 
 
-import com.example.cafeservice.entity.Role;
+import com.example.university.entity.Role;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

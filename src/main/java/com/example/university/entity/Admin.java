@@ -1,4 +1,4 @@
-package com.example.cafeservice.entity;
+package com.example.university.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +28,4 @@ public class Admin  {
     @OneToOne
     private Parent parent;
 
-
-    private double balance;
 }

@@ -12,8 +12,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BookCategoryPayload {
+public class BookPayload {
     String nameUz;
     String nameRu;
     String nameEn;
+
+    String fileHashId;
+    String imageHashId;
+    UUID categoryId;
 }

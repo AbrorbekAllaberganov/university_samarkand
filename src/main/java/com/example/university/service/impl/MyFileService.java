@@ -1,4 +1,4 @@
-package com.example.university.service;
+package com.example.university.service.impl;
 
 import com.example.university.entity.MyFile;
 import com.example.university.exceptions.BadRequest;
@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -86,17 +87,17 @@ public class MyFileService {
         return repository.findByHashId(hashId);
     }
 
+    @Transactional
     public Result delete(String hashId){
         MyFile myFile = findByHashId(hashId);
-
         File file = new File(String.format("%s/%s.%s", myFile.getUploadPath(), myFile.getHashId(), myFile.getExtension()));
 
-        if (file.delete() && repository.deleteByHashId(hashId)) {
-
-            return new Result("success",true);
-
-        } else {
-            return new Result("error",false);
+        try {
+            file.delete();
+            repository.deleteByHashId(hashId);
+            return Result.message("successful deleted",true);
+        }catch (Exception e) {
+            return Result.exception(e);
         }
 
     }

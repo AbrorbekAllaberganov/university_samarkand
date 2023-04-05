@@ -5,10 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -30,10 +33,18 @@ public class Book {
     @Column(nullable = false)
     String nameEn;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     MyFile file;
 
-    @ManyToOne
-    BooksCategory category;
+    @OneToOne(cascade = CascadeType.REMOVE)
+    MyFile image;
 
+    @ManyToOne
+    BookCategory category;
+
+    @CreationTimestamp
+    Date createdAt;
+
+    @UpdateTimestamp
+    Date updatedAt;
 }

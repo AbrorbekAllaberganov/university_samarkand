@@ -1,4 +1,4 @@
-package com.example.tender.config;
+package com.example.university.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

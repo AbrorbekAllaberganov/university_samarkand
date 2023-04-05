@@ -1,4 +1,4 @@
-package com.example.cafeservice.payload;
+package com.example.university.payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

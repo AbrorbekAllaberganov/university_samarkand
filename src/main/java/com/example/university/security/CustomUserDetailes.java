@@ -1,10 +1,9 @@
-package com.example.cafeservice.security;
+package com.example.university.security;
 
 
-import com.example.cafeservice.entity.Admin;
-import com.example.cafeservice.entity.Parent;
-import com.example.cafeservice.repository.AdminRepository;
-import com.example.cafeservice.repository.ParentRepository;
+import com.example.university.entity.Parent;
+import com.example.university.repository.AdminRepository;
+import com.example.university.repository.ParentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

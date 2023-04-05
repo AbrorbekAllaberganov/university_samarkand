@@ -1,4 +1,4 @@
-package com.example.cafeservice.security;
+package com.example.university.security;
 
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

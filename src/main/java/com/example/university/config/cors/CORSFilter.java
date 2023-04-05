@@ -1,4 +1,4 @@
-package com.example.tender.config.cors;
+package com.example.university.config.cors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

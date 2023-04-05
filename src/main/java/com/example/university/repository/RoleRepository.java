@@ -1,7 +1,7 @@
-package com.example.cafeservice.repository;
+package com.example.university.repository;
 
 
-import com.example.cafeservice.entity.Role;
+import com.example.university.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

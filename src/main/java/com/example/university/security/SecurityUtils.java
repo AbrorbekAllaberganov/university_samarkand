@@ -1,4 +1,4 @@
-package com.example.cafeservice.security;
+package com.example.university.security;
 
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,4 +1,4 @@
-package com.example.tender.config.cors;
+package com.example.university.config.cors;
 
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;

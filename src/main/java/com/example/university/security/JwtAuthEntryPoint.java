@@ -1,4 +1,4 @@
-package com.example.cafeservice.security;
+package com.example.university.security;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.AuthenticationException;

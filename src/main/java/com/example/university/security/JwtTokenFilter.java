@@ -1,4 +1,4 @@
-package com.example.cafeservice.security;
+package com.example.university.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;

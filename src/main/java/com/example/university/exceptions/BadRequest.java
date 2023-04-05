@@ -1,4 +1,4 @@
-package com.example.cafeservice.exceptions;
+package com.example.university.exceptions;
 
 
 import org.springframework.http.HttpStatus;
