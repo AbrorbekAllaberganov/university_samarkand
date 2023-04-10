@@ -39,9 +39,12 @@ public class BookCategoryServiceImpl implements BookCategoryService {
     public Result editCategory(UUID categoryId, BookCategoryPayload categoryPayload) {
         try {
             BookCategory bookCategory = findBookCategoryById(categoryId);
-            bookCategory.setNameUz(categoryPayload.getNameUz());
-            bookCategory.setNameRu(categoryPayload.getNameRu());
-            bookCategory.setNameEn(categoryPayload.getNameEn());
+            if (categoryPayload.getNameUz() != null)
+                bookCategory.setNameUz(categoryPayload.getNameUz());
+            if (categoryPayload.getNameRu() != null)
+                bookCategory.setNameRu(categoryPayload.getNameRu());
+            if (categoryPayload.getNameEn() != null)
+                bookCategory.setNameEn(categoryPayload.getNameEn());
 
             bookCategoryRepository.save(bookCategory);
             return Result.success(bookCategory);

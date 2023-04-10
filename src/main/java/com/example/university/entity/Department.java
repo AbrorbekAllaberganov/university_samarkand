@@ -1,5 +1,6 @@
 package com.example.university.entity;
 
+import com.example.university.payload.DepartmentPayload;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,35 +12,27 @@ import org.hibernate.annotations.Type;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.io.Serializable;
 import java.util.UUID;
 
-
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class MyFile implements Serializable {
-
+public class Department {
     @Id
     @Type(type = "org.hibernate.type.PostgresUUIDType")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     protected UUID id;
 
-    String link;
+    String nameUz;
+    String nameRu;
+    String nameEn;
 
-    String name;
-
-    String hashId;
-
-    String uploadPath;
-
-    String contentType;
-
-    String extension;
-
-    Long fileSize;
-
+    public Department(DepartmentPayload departmentPayload) {
+        this.nameUz = departmentPayload.getNameUz();
+        this.nameRu = departmentPayload.getNameRu();
+        this.nameEn = departmentPayload.getNameEn();
+    }
 }

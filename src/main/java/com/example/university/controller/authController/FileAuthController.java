@@ -17,6 +17,7 @@ import java.net.URLEncoder;
 @RestController
 @RequestMapping("/api/auth/file")
 @RequiredArgsConstructor
+@CrossOrigin(value = "*", maxAge = 3600L)
 public class FileAuthController {
     private final MyFileService myFileService;
 

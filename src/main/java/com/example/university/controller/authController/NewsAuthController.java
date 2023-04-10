@@ -12,6 +12,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/auth/news")
 @RequiredArgsConstructor
+@CrossOrigin(value = "*", maxAge = 3600L)
 public class NewsAuthController {
     private final NewsServiceImpl newsService;
 

@@ -14,6 +14,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/auth/book")
 @RequiredArgsConstructor
+@CrossOrigin(value = "*", maxAge = 3600L)
 public class BookAuthController {
 
     private final BookServiceImpl bookServiceImpl;

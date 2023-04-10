@@ -32,7 +32,7 @@ public class Faculty {
     @Column(unique = true,nullable = false)
     String nameEn;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     MyFile icon;
 
     @CreationTimestamp

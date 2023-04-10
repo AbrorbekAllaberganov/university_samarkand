@@ -13,6 +13,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/admin/book")
 @RequiredArgsConstructor
+@CrossOrigin(value = "*", maxAge = 3600L)
 public class BookAdminController {
     private final BookServiceImpl bookServiceImpl;
 

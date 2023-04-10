@@ -48,13 +48,20 @@ public class NewsServiceImpl implements NewsService {
             News news = newsRepository.findById(newsId).orElseThrow(
                     () -> new ResourceNotFound("news", "id", newsId)
             );
-            news.setImage(myFileService.findByHashId(newsPayload.getHashId()));
-            news.setTitleUz(newsPayload.getTitleUz());
-            news.setTitleRu(newsPayload.getTitleRu());
-            news.setTitleEn(newsPayload.getTitleEn());
-            news.setBodyUz(newsPayload.getBodyUz());
-            news.setBodyRu(newsPayload.getBodyRu());
-            news.setBodyEn(newsPayload.getBodyEn());
+            if (newsPayload.getHashId() != null)
+                news.setImage(myFileService.findByHashId(newsPayload.getHashId()));
+            if (newsPayload.getTitleUz() != null)
+                news.setTitleUz(newsPayload.getTitleUz());
+            if (newsPayload.getTitleRu() != null)
+                news.setTitleRu(newsPayload.getTitleRu());
+            if (newsPayload.getTitleEn() != null)
+                news.setTitleEn(newsPayload.getTitleEn());
+            if (newsPayload.getBodyUz() != null)
+                news.setBodyUz(newsPayload.getBodyUz());
+            if (newsPayload.getBodyRu() != null)
+                news.setBodyRu(newsPayload.getBodyRu());
+            if (newsPayload.getBodyEn() != null)
+                news.setBodyEn(newsPayload.getBodyEn());
 
             newsRepository.save(news);
             return Result.success(news);
@@ -79,8 +86,8 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public Page<News> getNewsWithPageable(int pageNo,int pageSize) {
-        Pageable pageable= PageRequest.of(pageNo,pageSize, Sort.by(Sort.Direction.DESC,"createdAt"));
+    public Page<News> getNewsWithPageable(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC, "createdAt"));
         return newsRepository.findAll(pageable);
     }
 }

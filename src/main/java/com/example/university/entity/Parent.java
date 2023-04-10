@@ -1,8 +1,10 @@
 package com.example.university.entity;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -15,6 +17,7 @@ import java.util.UUID;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Parent implements Serializable {
     @Id
     @Type(type = "org.hibernate.type.PostgresUUIDType")
@@ -22,12 +25,12 @@ public class Parent implements Serializable {
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     protected UUID id;
 
-    private String fullName;
-    private String userName;
-    private String password;
-    private String phoneNumber;
+    String fullName;
+    String userName;
+    String password;
+    String phoneNumber;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Role> roles;
+    List<Role> roles;
 
 }

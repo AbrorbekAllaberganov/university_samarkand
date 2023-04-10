@@ -61,21 +61,19 @@ public class MyFileService {
         file.mkdirs();
 
         // save MyFile into base
-        myFile.setLink(myFile.getUploadPath()+"/"+myFile.getHashId()+"."+myFile.getExtension());
+        myFile.setLink(file.getAbsolutePath() + "/" + String.format("%s.%s", myFile.getHashId(), myFile.getExtension()));
+
         repository.save(myFile);
 
         try {
             // copy bytes into new file or saving into storage
             multipartFile.transferTo(new File(file.getAbsolutePath() + "/" + String.format("%s.%s", myFile.getHashId(), myFile.getExtension())));
-            myFile.setLink("https://booking-demo.herokuapp.com/"+file.getAbsolutePath() + "/" + String.format("%s.%s", myFile.getHashId(), myFile.getExtension()));
-            repository.save(myFile);
             Map<Object, Object> data = new HashMap<>();
             data.put("hashId", myFile.getHashId());
             return new Result("File successfully saved!", true, data);
 
         } catch (IOException e) {
-            e.printStackTrace();
-            throw new BadRequest("File not saved!");
+            return Result.exception(e);
         }
     }
 

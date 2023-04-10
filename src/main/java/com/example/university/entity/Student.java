@@ -1,6 +1,9 @@
 package com.example.university.entity;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
@@ -16,16 +19,35 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Connection {
+public class Student {
+
     @Id
     @Type(type = "org.hibernate.type.PostgresUUIDType")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     protected UUID id;
 
-    String fullName;
+    String firstName;
+
+    String lastName;
+
+    @Column(unique = true)
     String phoneNumber;
-    String message;
+
+    @Column(unique = true)
+    String email;
+
+    @ManyToOne
+    Faculty faculty;
+
+    @ManyToOne
+    StudyType studyType;
+
+    @OneToOne(cascade = CascadeType.REMOVE)
+    MyFile passportFile;
+
+    @OneToOne(cascade = CascadeType.REMOVE)
+    MyFile attestatFile;
 
     boolean isView;
 

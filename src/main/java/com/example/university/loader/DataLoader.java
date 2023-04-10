@@ -3,9 +3,8 @@ package com.example.university.loader;
 import com.example.university.entity.Admin;
 import com.example.university.entity.Parent;
 import com.example.university.entity.Role;
-import com.example.university.repository.AdminRepository;
-import com.example.university.repository.ParentRepository;
-import com.example.university.repository.RoleRepository;
+import com.example.university.entity.StudyType;
+import com.example.university.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -26,6 +25,8 @@ public class DataLoader implements CommandLineRunner {
     private final AdminRepository adminRepository;
     private final PasswordEncoder passwordEncoder;
     private final ParentRepository parentRepository;
+    private final StudentRepository studentRepository;
+    private final StudyTypeRepository studyTypeRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -55,6 +56,26 @@ public class DataLoader implements CommandLineRunner {
                 admin.setParent(parent);
 
                 adminRepository.save(admin);
+
+                StudyType studyType1=new StudyType();
+                studyType1.setId(1);
+                studyType1.setNameUz("Kunduzgi");
+                studyType1.setNameRu("Kunduzgi Ru");
+                studyType1.setNameEn("Kunduzgi En");
+
+                StudyType studyType2=new StudyType();
+                studyType2.setId(2);
+                studyType2.setNameUz("Sirtqi");
+                studyType2.setNameRu("Sirtqi Ru");
+                studyType2.setNameEn("Sirtqi En");
+
+                StudyType studyType3=new StudyType();
+                studyType3.setId(3);
+                studyType3.setNameUz("Kechgi");
+                studyType3.setNameRu("Kechgi Ru");
+                studyType3.setNameEn("Kechgi En");
+
+                studyTypeRepository.saveAll(Arrays.asList(studyType1,studyType2,studyType3));
             }
 
 

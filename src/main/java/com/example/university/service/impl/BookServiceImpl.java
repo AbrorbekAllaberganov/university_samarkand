@@ -48,12 +48,18 @@ public class BookServiceImpl implements BookService {
             Book book = bookRepository.findById(bookId).orElseThrow(
                     () -> new ResourceNotFound("book", "id", bookId)
             );
-            book.setFile(myFileService.findByHashId(bookPayload.getFileHashId()));
-            book.setImage(myFileService.findByHashId(bookPayload.getImageHashId()));
-            book.setNameUz(bookPayload.getNameUz());
-            book.setNameRu(bookPayload.getNameRu());
-            book.setNameEn(bookPayload.getNameEn());
-            book.setCategory(bookCategoryService.findBookCategoryById(bookPayload.getCategoryId()));
+            if (bookPayload.getFileHashId() != null)
+                book.setFile(myFileService.findByHashId(bookPayload.getFileHashId()));
+            if (bookPayload.getImageHashId() != null)
+                book.setImage(myFileService.findByHashId(bookPayload.getImageHashId()));
+            if (bookPayload.getNameUz() != null)
+                book.setNameUz(bookPayload.getNameUz());
+            if (bookPayload.getNameRu() != null)
+                book.setNameRu(bookPayload.getNameRu());
+            if (bookPayload.getNameEn() != null)
+                book.setNameEn(bookPayload.getNameEn());
+            if (bookPayload.getCategoryId() != null)
+                book.setCategory(bookCategoryService.findBookCategoryById(bookPayload.getCategoryId()));
 
             bookRepository.save(book);
 
@@ -80,15 +86,15 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Page<Book> getBooksWithPageable(int pageNo,int pageSize) {
+    public Page<Book> getBooksWithPageable(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC, "createdAt"));
         return bookRepository.findAll(pageable);
     }
 
     @Override
-    public Page<Book> getBooksWithPageableByCategoryId(int pageNo,int pageSize, UUID categoryId) {
+    public Page<Book> getBooksWithPageableByCategoryId(int pageNo, int pageSize, UUID categoryId) {
         Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC, "createdAt"));
-        return bookRepository.findAllByCategory_Id(categoryId,pageable);
+        return bookRepository.findAllByCategory_Id(categoryId, pageable);
     }
 
 }

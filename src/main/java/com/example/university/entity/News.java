@@ -39,7 +39,7 @@ public class News {
     @Column(nullable = false, length = 1023)
     String bodyEn;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     MyFile image;
 
     @CreationTimestamp
