@@ -12,4 +12,5 @@ public interface ConnectionService {
     Result deleteConnection(UUID id);
     Result changeIsView(UUID id);
     Page<Connection> getConnectionWithPageable(int page,int size);
+    Result findConnectionById(UUID connectionId);
 }

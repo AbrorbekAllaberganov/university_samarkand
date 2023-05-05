@@ -13,4 +13,6 @@ public interface FacultyService {
     Result deleteFaculty(UUID facultyId);
 
     Result getAll();
+
+    Result findNewsBoyId(UUID newsId);
 }

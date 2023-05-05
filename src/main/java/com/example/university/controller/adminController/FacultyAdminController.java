@@ -35,5 +35,10 @@ public class FacultyAdminController {
         return ResponseEntity.status(result.isStatus()?200:409).body(result);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Result> findFacultyById(@PathVariable UUID id){
+        Result result=facultyServiceImpl.findNewsBoyId(id);
+        return ResponseEntity.status(result.isStatus()?200:409).body(result);
+    }
 
 }

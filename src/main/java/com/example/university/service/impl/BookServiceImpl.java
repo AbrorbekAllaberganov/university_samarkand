@@ -97,4 +97,15 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findAllByCategory_Id(categoryId, pageable);
     }
 
+    @Override
+    public Result findBookById(UUID bookId) {
+        try {
+            return Result.success(bookRepository.findById(bookId).orElseThrow(
+                    () -> new ResourceNotFound("book", "id", bookId)
+            ));
+        }catch (Exception e){
+            return Result.exception(e);
+        }
+    }
+
 }

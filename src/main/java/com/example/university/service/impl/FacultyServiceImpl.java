@@ -77,4 +77,15 @@ public class FacultyServiceImpl implements FacultyService {
     public Result getAll() {
         return Result.success(facultyRepository.findAll(Sort.by("createdAt")));
     }
+
+    @Override
+    public Result findNewsBoyId(UUID facultyId) {
+        try {
+            return Result.success(facultyRepository.findById(facultyId).orElseThrow(
+                    () -> new ResourceNotFound("faculty", "id", facultyId)
+            ));
+        } catch (Exception e) {
+            return Result.exception(e);
+        }
+    }
 }

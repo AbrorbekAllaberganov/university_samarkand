@@ -17,4 +17,5 @@ public interface StudentService {
     Page<Student> getAllStudentWithPageable(int page, int size);
 
     Result getStudyType();
+    Result findStudentById(UUID studentId);
 }

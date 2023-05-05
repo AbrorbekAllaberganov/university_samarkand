@@ -37,4 +37,10 @@ public class BookAdminController {
         return ResponseEntity.status(result.isStatus() ? 200 : 409).body(result);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Result> findBookById(@PathVariable UUID id){
+        Result result=bookServiceImpl.findBookById(id);
+        return ResponseEntity.status(result.isStatus()?200:409).body(result);
+    }
+
 }

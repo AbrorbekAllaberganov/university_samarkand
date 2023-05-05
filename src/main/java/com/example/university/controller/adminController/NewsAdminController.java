@@ -37,4 +37,9 @@ public class NewsAdminController {
         return ResponseEntity.status(result.isStatus()?200:409).body(result);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Result> findNewsById(@PathVariable UUID id){
+        Result result=newsService.findById(id);
+        return ResponseEntity.status(result.isStatus()?200:409).body(result);
+    }
 }

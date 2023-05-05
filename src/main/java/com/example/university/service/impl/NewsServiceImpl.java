@@ -5,6 +5,7 @@ import com.example.university.entity.News;
 import com.example.university.exceptions.ResourceNotFound;
 import com.example.university.payload.NewsPayload;
 import com.example.university.payload.Result;
+import com.example.university.repository.BookCategoryRepository;
 import com.example.university.repository.NewsRepository;
 import com.example.university.service.NewsService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ import java.util.UUID;
 public class NewsServiceImpl implements NewsService {
     private final NewsRepository newsRepository;
     private final MyFileService myFileService;
+    private final BookCategoryRepository bookCategoryRepository;
 
     @Override
     public Result saveNews(NewsPayload newsPayload) {
@@ -89,5 +91,16 @@ public class NewsServiceImpl implements NewsService {
     public Page<News> getNewsWithPageable(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC, "createdAt"));
         return newsRepository.findAll(pageable);
+    }
+
+    @Override
+    public Result findById(UUID newsId) {
+        try {
+            return Result.success(newsRepository.findById(newsId).orElseThrow(
+                    () -> new ResourceNotFound("news", "id", newsId)
+            ));
+        }catch (Exception e){
+            return Result.exception(e);
+        }
     }
 }

@@ -31,8 +31,11 @@ public class Specialist {
     String nameRu;
     String nameEn;
 
+    @Column(length = 1023)
     String bodyUz;
+    @Column(length = 1023)
     String bodyRu;
+    @Column(length = 1023)
     String bodyEn;
 
     String kvalifikatsiyaUz;

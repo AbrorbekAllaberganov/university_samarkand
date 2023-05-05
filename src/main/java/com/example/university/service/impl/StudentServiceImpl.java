@@ -122,4 +122,15 @@ public class StudentServiceImpl implements StudentService {
     public Result getStudyType() {
         return Result.success(studyTypeRepository.findAll(Sort.by("id")));
     }
+
+    @Override
+    public Result findStudentById(UUID studentId) {
+        try {
+            return Result.success(studentRepository.findById(studentId).orElseThrow(
+                    () -> new ResourceNotFound("student", "id", studentId)
+            ));
+        }catch (Exception e){
+            return Result.exception(e);
+        }
+    }
 }

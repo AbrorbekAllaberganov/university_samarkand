@@ -15,4 +15,7 @@ public interface NewsService {
     Result deleteNews(UUID newsId);
 
     Page<News> getNewsWithPageable(int PageNo,int pageSize);
+
+    Result findById(UUID newsId);
+
 }

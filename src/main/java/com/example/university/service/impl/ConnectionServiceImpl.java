@@ -70,4 +70,15 @@ public class ConnectionServiceImpl implements ConnectionService {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt"));
         return connectionRepository.findAll(pageable);
     }
+
+    @Override
+    public Result findConnectionById(UUID connectionId) {
+        try {
+            return Result.success(connectionRepository.findById(connectionId).orElseThrow(
+                    ()->new ResourceNotFound("connection","id",connectionId)
+            ));
+        }catch (Exception e){
+            return Result.exception(e);
+        }
+    }
 }

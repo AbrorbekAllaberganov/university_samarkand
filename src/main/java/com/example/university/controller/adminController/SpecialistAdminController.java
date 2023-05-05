@@ -2,6 +2,7 @@ package com.example.university.controller.adminController;
 
 import com.example.university.payload.Result;
 import com.example.university.payload.SpecialistPayload;
+import com.example.university.repository.ConnectionRepository;
 import com.example.university.service.impl.SpecialistServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,12 @@ public class SpecialistAdminController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Result> deleteSpecialist(@PathVariable UUID id){
         Result result=specialistService.deleteSpecialist(id);
+        return ResponseEntity.status(result.isStatus()?200:409).body(result);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Result> findSpecialistById(@PathVariable UUID id){
+        Result result=specialistService.findById(id);
         return ResponseEntity.status(result.isStatus()?200:409).body(result);
     }
 

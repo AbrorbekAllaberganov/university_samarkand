@@ -31,4 +31,7 @@ public class BookAuthController {
                                                               @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(bookServiceImpl.getBooksWithPageableByCategoryId(page, size,categoryId));
     }
+
+
+
 }

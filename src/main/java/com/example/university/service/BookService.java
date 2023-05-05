@@ -18,6 +18,6 @@ public interface BookService {
 
     Page<Book> getBooksWithPageableByCategoryId(int pageSize, int pageNo,UUID categoryId);
 
-
+    Result findBookById(UUID bookId);
 
 }
